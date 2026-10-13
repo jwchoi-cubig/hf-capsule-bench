@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Korean PII Replacement Benchmark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;--panel:#ffffff;--ink:#1f2937;--sub:#6b7280;--line:#e5e7eb;--head:#f3f4f6;
+  --stripe:#fafafa;--accent:#f97316;--accent-bar:#fed7aa;--link:#2563eb;--warn-bg:#fffbeb;--warn-line:#fde68a;
+  --ref:#9ca3af;--code-bg:#f3f4f6
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0b0f19;--panel:#111827;--ink:#e5e7eb;--sub:#9ca3af;--line:#1f2937;--head:#1f2937;
+    --stripe:#0f1523;--accent:#fb923c;--accent-bar:#7c2d12;--link:#60a5fa;--warn-bg:#1f1a0b;--warn-line:#713f12;
+    --ref:#6b7280;--code-bg:#1f2937
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 "Source Sans 3",-apple-system,"Segoe UI","Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+main{max-width:1000px;margin:0 auto;padding:32px 20px 48px}
+h1{font-size:28px;line-height:1.3;margin:0 0 10px;text-align:center}
+.desc{margin:16px 0 8px}
+.warn{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:6px;padding:8px 12px;font-size:14px;margin:8px 0 16px}
+details.ko{border:1px solid var(--line);border-radius:6px;padding:8px 12px;margin:0 0 20px;background:var(--panel)}
+details.ko summary{cursor:pointer;font-weight:600}
+details.ko p{margin:6px 0;font-family:"Apple SD Gothic Neo","Noto Sans KR",sans-serif;font-size:14px}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:8px 0 18px;flex-wrap:wrap}
+.tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:8px 14px;font:inherit;font-size:17px;color:var(--ink);cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+section[role="tabpanel"][hidden]{display:none}
+.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--panel)}
+th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{background:var(--head);font-family:"IBM Plex Mono",monospace;font-weight:600;font-size:13px}
+tbody tr:nth-child(even) td{background:var(--stripe)}
+td.num,th.num{text-align:right;font-family:"IBM Plex Mono",monospace}
+td.bar{position:relative;font-family:"IBM Plex Mono",monospace;text-align:right;min-width:110px}
+td.bar span{position:relative;z-index:1}
+td.bar i{position:absolute;left:0;top:0;bottom:0;background:var(--accent-bar)}
+tr.ref td{color:var(--ref)}
+tr.top td:first-child,tr.top td:nth-child(2){font-weight:700}
+code{font-family:"IBM Plex Mono",monospace;background:var(--code-bg);padding:1px 5px;border-radius:4px;font-size:.92em}
+.foot{font-size:13px;color:var(--sub);margin:8px 2px}
+h2{font-size:19px;margin:26px 0 8px}
+ul{padding-left:20px}
+a{color:var(--link)}
+pre{background:var(--code-bg);border-radius:6px;padding:12px;overflow-x:auto;font:13px/1.5 "IBM Plex Mono",monospace}
+.copy{float:right;font:inherit;font-size:13px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:4px;padding:2px 8px;cursor:pointer}
+footer{margin-top:36px;text-align:center;font-size:13px;color:var(--sub)}
+@media(max-width:640px){h1{font-size:23px}.tabs button{font-size:15px;padding:8px 10px}}
+</style>
+</head>
+<body>
+<main>
+
+<h1>Korean PII Replacement Benchmark</h1>
+
+<p class="desc">Measures how the <strong>form of PII replacement</strong> affects what an LLM can still answer from masked Korean text. All masked conditions cover the same gold PII spans; only the replacement form changes.</p>
+
+<div class="warn">⚠️ Controlled experiment with gold PII spans (detection errors excluded). Scores reflect the replacement method, not the end-to-end performance of any product.</div>
+
+<details class="ko">
+<summary>한국어 요약</summary>
+<p>같은 개인정보 위치를 가리고, 가리는 방식만 바꿔서 같은 질문을 던졌습니다.</p>
+<p>별표(***)로 지우면 0점, 뜻 없는 코드로 바꿨다가 복원하면 문서 76.7점, 대화 67.4점이었습니다.</p>
+<p><code>[전화번호_A]</code>처럼 종류를 남겼다가 복원하면 문서 99.3점, 대화 96.3점으로 가리지 않은 원문(98.0점, 96.3점)과 같은 수준이었습니다.</p>
+<p>종류를 남겼다가 복원하는 이 방식은 LLM Capsule이 쓰는 치환 방식입니다.</p>
+<p>정답 위치를 미리 알려 준 통제 실험이라, 특정 제품의 전체 성능 수치는 아닙니다.</p>
+</details>
+
+<div class="tabs" role="tablist">
+<button role="tab" aria-selected="true" aria-controls="t-results" id="b-results">📊 Results</button>
+<button role="tab" aria-selected="false" aria-controls="t-method" id="b-method">📝 Method</button>
+<button role="tab" aria-selected="false" aria-controls="t-data" id="b-data">📂 Data</button>
+<button role="tab" aria-selected="false" aria-controls="t-cite" id="b-cite">📖 Citation</button>
+</div>
+
+<section role="tabpanel" id="t-results" aria-labelledby="b-results">
+<div class="wrap">
+<table>
+<thead>
+<tr><th>Rank</th><th>Replacement</th><th>Restore</th><th class="num">Avg F1 ⬇</th><th class="num">OpenPII F1</th><th class="num">KDPII F1</th><th class="num">OpenPII Acc</th><th class="num">KDPII Acc</th></tr>
+</thead>
+<tbody>
+<tr class="top"><td>1</td><td>Typed entity token <code>[전화번호_A]</code> (LLM Capsule method*)</td><td>yes</td><td class="bar"><i style="width:97.8%"></i><span>97.8</span></td><td class="num">99.3</td><td class="num">96.3</td><td class="num">99.4</td><td class="num">93.6</td></tr>
+<tr><td>2</td><td>Hash token <code>96dcb10b8009</code></td><td>yes</td><td class="bar"><i style="width:72.1%"></i><span>72.1</span></td><td class="num">76.7</td><td class="num">67.4</td><td class="num">72.6</td><td class="num">71.0</td></tr>
+<tr><td>3</td><td>Plain masking <code>***</code></td><td>no</td><td class="bar"><i style="width:0%"></i><span>0.0</span></td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0</td></tr>
+<tr class="ref"><td>ref</td><td>Original text (no masking)</td><td>n/a</td><td class="bar"><i style="width:97.2%;opacity:.45"></i><span>97.2</span></td><td class="num">98.0</td><td class="num">96.3</td><td class="num">97.4</td><td class="num">85.8</td></tr>
+</tbody>
+</table>
+</div>
+<p class="foot">F1: multi-value extraction (document-level mean). Acc: single-value lookup (exact match). Avg F1 = mean of OpenPII F1 and KDPII F1. n = 500 per dataset. Answering model: gpt-6-luna, one run per condition.</p>
+<p class="foot">* Same replacement form as LLM Capsule (typed, entity-indexed tokens restored locally after the answer). The detection step of the product is not part of this test. <a href="{UTM 링크: LLM Capsule 비교 자료}">See how LLM Capsule applies it</a></p>
+
+<h2>Paired difference: typed entity token − hash token</h2>
+<div class="wrap">
+<table>
+<thead><tr><th>Dataset</th><th>Task</th><th class="num">Difference</th><th class="num">95% interval</th></tr></thead>
+<tbody>
+<tr><td>OpenPII</td><td>Single-value lookup</td><td class="num">+26.8 pp</td><td class="num">+23.0 to +30.6</td></tr>
+<tr><td>OpenPII</td><td>Multi-value extraction</td><td class="num">+22.6 pp</td><td class="num">+19.7 to +25.5</td></tr>
+<tr><td>KDPII</td><td>Single-value lookup</td><td class="num">+22.6 pp</td><td class="num">+18.6 to +26.6</td></tr>
+<tr><td>KDPII</td><td>Multi-value extraction</td><td class="num">+28.9 pp</td><td class="num">+26.1 to +31.9</td></tr>
+</tbody>
+</table>
+</div>
+<p class="foot">Document-level percentile bootstrap, 2,000 resamples (seed 420929). Exploratory, no multiple-comparison correction. Per-condition intervals are on the dataset card.</p>
+</section>
+
+<section role="tabpanel" id="t-method" aria-labelledby="b-method" hidden>
+<h2>Conditions</h2>
+<div class="wrap">
+<table>
+<thead><tr><th>Condition</th><th>A phone number becomes</th><th>After the answer</th></tr></thead>
+<tbody>
+<tr><td>Original text</td><td><code>010-1234-5678</code></td><td>Scored as is</td></tr>
+<tr><td>Plain masking</td><td><code>***</code></td><td>Cannot be restored</td></tr>
+<tr><td>Hash token</td><td><code>96dcb10b8009</code></td><td>Restored with a local mapping table</td></tr>
+<tr><td>Typed entity token</td><td><code>[전화번호_A]</code></td><td>Restored with a local mapping table</td></tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>The same value within a document always maps to the same token.</li>
+<li>Mapping tables and original values are never sent to the model; restoration runs locally after the answer.</li>
+<li>Hash and typed tokens are both restorable. The difference is whether the model can see that a slot holds a phone number.</li>
+</ul>
+<h2>Tasks</h2>
+<ul>
+<li><strong>Single-value lookup</strong>: e.g. "What is Minji's phone number?" The restored answer must exactly match the gold value.</li>
+<li><strong>Multi-value extraction</strong>: list all identifiers (phone numbers, emails, account, card and ID numbers) as an array. F1 penalizes both missing and extra values.</li>
+</ul>
+<h2>Limitations</h2>
+<ul>
+<li>Gold spans are given, so detection quality is not measured.</li>
+<li>One answering model and one run per condition.</li>
+<li>Lookup and extraction only; do not generalize to summarization, classification or reasoning.</li>
+<li>Scores above the original text likely reflect that type labels make targets easier to pick, not a general capability gain.</li>
+<li><code>***</code> scores zero partly because these tasks require returning the original value.</li>
+</ul>
+</section>
+
+<section role="tabpanel" id="t-data" aria-labelledby="b-data" hidden>
+<div class="wrap">
+<table>
+<thead><tr><th>Source</th><th class="num">Korean items</th><th class="num">Task-eligible</th><th class="num">Sampled</th><th>License</th></tr></thead>
+<tbody>
+<tr><td><a href="https://huggingface.co/datasets/ai4privacy/pii-masking-openpii-1.5m">OpenPII 1.5M</a> (validation, documents)</td><td class="num">5,273</td><td class="num">2,003</td><td class="num">500</td><td>CC BY 4.0, Ai4Privacy / Ai Suisse SA</td></tr>
+<tr><td><a href="https://zenodo.org/records/16759166">KDPII Revised</a> (dialogues)</td><td class="num">4,981</td><td class="num">2,184</td><td class="num">500</td><td>CC BY 4.0</td></tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>At least 50 items per question type, the rest allocated by type frequency, stratified by length and PII count. Not population-proportional.</li>
+<li>Questions and answers were generated by code from the original gold annotations.</li>
+<li>Samples, gold answers, per-condition results and scoring code: <a href="https://huggingface.co/datasets/CUBIGCorp/korean-pii-replacement-benchmark">CUBIGCorp/korean-pii-replacement-benchmark</a></li>
+</ul>
+</section>
+
+<section role="tabpanel" id="t-cite" aria-labelledby="b-cite" hidden>
+<pre id="bib"><button class="copy" type="button" onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('bibtext').textContent)">Copy</button><span id="bibtext">@misc{cubig2026koreanpiireplacement,
+  title  = {Korean PII Replacement Benchmark},
+  author = {CUBIG},
+  year   = {2026},
+  url    = {https://huggingface.co/datasets/CUBIGCorp/korean-pii-replacement-benchmark}
+}</span></pre>
+<p class="foot">Please also cite OpenPII (Ai4Privacy) and KDPII when you use this benchmark.</p>
+</section>
+
+<footer>
+Built by <a href="https://www.cubig.ai">CUBIG</a>, the team behind <a href="{UTM 링크: llmcapsule.ai}">LLM Capsule</a>.
+</footer>
+
+</main>
+<script>
+document.querySelectorAll('[role="tab"]').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('[role="tab"]').forEach(function(x){x.setAttribute('aria-selected','false')});
+    document.querySelectorAll('[role="tabpanel"]').forEach(function(p){p.hidden=true});
+    b.setAttribute('aria-selected','true');
+    document.getElementById(b.getAttribute('aria-controls')).hidden=false;
+  });
+});
+</script>
+<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · Space 결과 페이지 · v0.1 (2026-10-13)</div>
+</body>
+</html>
