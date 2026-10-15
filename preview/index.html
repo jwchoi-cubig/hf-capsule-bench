@@ -128,7 +128,7 @@ iframe{display:block;width:100%;height:1050px;border:0}
 <div class="note"><span class="pin">2</span><b>태그</b><p>설명 페이지 맨 위 설정값(라이선스, 언어, 태그)이 자동으로 이 칩으로 바뀝니다. "pii", "korean"으로 검색하는 사람에게 걸리는 부분입니다.</p></div>
 <div class="note"><span class="pin">3</span><b>데이터 미리보기</b><p>파일을 올리면 허깅페이스가 표로 보여 줍니다. 개발자가 아니어도 "어떤 문장에 어떤 질문을 던졌는지" 바로 볼 수 있습니다. 공개 범위가 정해지면 실제 행이 들어갑니다.</p></div>
 <div class="note"><span class="pin">4</span><b>설명 페이지 (README)</b><p>우리가 쓴 dataset-README.md가 이 자리에 그대로 보입니다. Patronus처럼 짧게: 한국어 요약 → 무엇을 쟀나 → 핵심 표.</p></div>
-<div class="note"><span class="pin">5</span><b>핵심 표 하나와 LLM Capsule 연결</b><p>상세 수치는 결과 페이지로 넘기고 여기에는 표 하나만 둡니다. 1위 방식에 「LLM Capsule method」를 붙이고, 각주로 「같은 치환 형식, 탐지 단계는 제외」를 밝힙니다. 점수를 제품 성능처럼 쓰지 않으면서 이긴 방식이 우리 제품 방식임을 보여 주는 장치입니다.</p></div>
+<div class="note"><span class="pin">5</span><b>핵심 표 하나와 LLM Capsule 연결</b><p>상세 수치는 결과 페이지로 넘기고 여기에는 표 하나만 둡니다. 종류 표식 줄에 「LLM Capsule method」를 붙이고, 각주로 「같은 치환 형식, 탐지 단계는 제외」를 밝힙니다. 점수를 제품 성능처럼 쓰지 않으면서 이긴 방식이 우리 제품 방식임을 보여 주는 장치입니다.</p></div>
 <div class="note"><span class="pin">6</span><b>출구 문장</b><p>Patronus의 "전체 데이터로 평가하려면 연락 주세요" 방식입니다. 영업 버튼 대신 협업 안내로 읽힙니다.</p></div>
 <div class="note"><span class="pin">7</span><b>연결된 Space</b><p>결과 페이지(Space)가 이 데이터셋을 쓰면 오른쪽에 자동으로 연결됩니다. 두 페이지가 서로를 가리킵니다.</p></div>
 </div>
@@ -148,107 +148,134 @@ iframe{display:block;width:100%;height:1050px;border:0}
 &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
 &lt;title&gt;Korean PII Replacement Benchmark&lt;/title&gt;
 &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
-&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=IBM+Plex+Mono:wght@400;600&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&amp;family=IBM+Plex+Mono:wght@400;600&amp;family=Noto+Sans+KR:wght@400;600&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
 &lt;style&gt;
 :root{
-  --bg:#ffffff;--panel:#ffffff;--ink:#1f2937;--sub:#6b7280;--line:#e5e7eb;--head:#f3f4f6;
-  --stripe:#fafafa;--accent:#f97316;--accent-bar:#fed7aa;--link:#2563eb;--warn-bg:#fffbeb;--warn-line:#fde68a;
-  --ref:#9ca3af;--code-bg:#f3f4f6
+  --bg:#ffffff;--panel:#ffffff;--ink:#111827;--sub:#6b7280;--line:#e5e7eb;--head:#f9fafb;
+  --accent:#4f46e5;--accent-soft:#eef2ff;--bar:#d1d5db;--bar-ref:#e5e7eb;--link:#4338ca;--code-bg:#f3f4f6
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme=&quot;light&quot;]){
-    --bg:#0b0f19;--panel:#111827;--ink:#e5e7eb;--sub:#9ca3af;--line:#1f2937;--head:#1f2937;
-    --stripe:#0f1523;--accent:#fb923c;--accent-bar:#7c2d12;--link:#60a5fa;--warn-bg:#1f1a0b;--warn-line:#713f12;
-    --ref:#6b7280;--code-bg:#1f2937
+    --bg:#0b0f19;--panel:#111827;--ink:#f3f4f6;--sub:#9ca3af;--line:#1f2937;--head:#151c2c;
+    --accent:#818cf8;--accent-soft:#1e1b4b;--bar:#4b5563;--bar-ref:#374151;--link:#a5b4fc;--code-bg:#1f2937
   }
 }
+:root[data-theme=&quot;dark&quot;]{
+  --bg:#0b0f19;--panel:#111827;--ink:#f3f4f6;--sub:#9ca3af;--line:#1f2937;--head:#151c2c;
+  --accent:#818cf8;--accent-soft:#1e1b4b;--bar:#4b5563;--bar-ref:#374151;--link:#a5b4fc;--code-bg:#1f2937
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 &quot;Source Sans 3&quot;,-apple-system,&quot;Segoe UI&quot;,&quot;Apple SD Gothic Neo&quot;,&quot;Noto Sans KR&quot;,sans-serif}
-main{max-width:1000px;margin:0 auto;padding:32px 20px 48px}
-h1{font-size:28px;line-height:1.3;margin:0 0 10px;text-align:center}
-.desc{margin:16px 0 8px}
-.warn{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:6px;padding:8px 12px;font-size:14px;margin:8px 0 16px}
-details.ko{border:1px solid var(--line);border-radius:6px;padding:8px 12px;margin:0 0 20px;background:var(--panel)}
-details.ko summary{cursor:pointer;font-weight:600}
-details.ko p{margin:6px 0;font-family:&quot;Apple SD Gothic Neo&quot;,&quot;Noto Sans KR&quot;,sans-serif;font-size:14px}
-.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:8px 0 18px;flex-wrap:wrap}
-.tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:8px 14px;font:inherit;font-size:17px;color:var(--ink);cursor:pointer}
-.tabs button[aria-selected=&quot;true&quot;]{color:var(--accent);border-bottom-color:var(--accent)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 &quot;Source Sans 3&quot;,-apple-system,&quot;Segoe UI&quot;,&quot;Noto Sans KR&quot;,sans-serif}
+main{max-width:880px;margin:0 auto;padding:28px 16px 48px}
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;font-size:14px;color:var(--sub)}
+.top a{color:var(--sub);text-decoration:none}.top a[aria-current]{color:var(--ink);font-weight:600}
+h1{font-size:30px;line-height:1.25;margin:10px 0 14px}
+.lead{font-size:20px;line-height:1.5;margin:0 0 22px}
+.lead strong{color:var(--accent)}
+code{font-family:&quot;IBM Plex Mono&quot;,&quot;Noto Sans KR&quot;,monospace;background:var(--code-bg);padding:1px 6px;border-radius:4px;font-size:.9em;white-space:nowrap}
+.wrap{border:1px solid var(--line);border-radius:8px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;background:var(--panel);font-size:15px}
+th,td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border-bottom:0}
+th{background:var(--head);font-size:13px;font-weight:600;color:var(--sub);white-space:nowrap}
+th.num,td.num{text-align:right;font-family:&quot;IBM Plex Mono&quot;,monospace;white-space:nowrap}
+.cond b{display:block;font-weight:600}
+.cond small{color:var(--sub);font-size:13px}
+.score{min-width:150px}
+.score .v{font-family:&quot;IBM Plex Mono&quot;,monospace;font-weight:600;display:inline-block;width:3.2em;text-align:right}
+.score .t{display:inline-block;vertical-align:middle;width:calc(100% - 3.8em);height:8px;margin-left:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.score .t i{display:block;height:100%;background:var(--bar)}
+tr.ref .score .t i{background:var(--bar-ref)}
+tr.ours td{background:var(--accent-soft)}
+tr.ours .score .t i{background:var(--accent)}
+tr.ref td{color:var(--sub)}
+.foot{font-size:13px;color:var(--sub);margin:8px 2px 0}
+.scope{margin:18px 0 0;padding:12px 14px;border:1px solid var(--line);border-radius:8px;font-size:14px;color:var(--sub)}
+.scope b{color:var(--ink)}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 34px}
+.btn{display:inline-block;padding:10px 16px;border-radius:8px;font-weight:600;text-decoration:none;font-size:15px}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.ghost{border:1px solid var(--line);color:var(--ink)}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin:0 0 18px;flex-wrap:wrap}
+.tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:8px 14px;font:inherit;font-size:16px;color:var(--sub);cursor:pointer}
+.tabs button[aria-selected=&quot;true&quot;]{color:var(--ink);border-bottom-color:var(--accent);font-weight:600}
 section[role=&quot;tabpanel&quot;][hidden]{display:none}
-.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px}
-table{width:100%;border-collapse:collapse;font-size:14px;background:var(--panel)}
-th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
-th{background:var(--head);font-family:&quot;IBM Plex Mono&quot;,monospace;font-weight:600;font-size:13px}
-tbody tr:nth-child(even) td{background:var(--stripe)}
-td.num,th.num{text-align:right;font-family:&quot;IBM Plex Mono&quot;,monospace}
-td.bar{position:relative;font-family:&quot;IBM Plex Mono&quot;,monospace;text-align:right;min-width:110px}
-td.bar span{position:relative;z-index:1}
-td.bar i{position:absolute;left:0;top:0;bottom:0;background:var(--accent-bar)}
-tr.ref td{color:var(--ref)}
-tr.top td:first-child,tr.top td:nth-child(2){font-weight:700}
-code{font-family:&quot;IBM Plex Mono&quot;,monospace;background:var(--code-bg);padding:1px 5px;border-radius:4px;font-size:.92em}
-.foot{font-size:13px;color:var(--sub);margin:8px 2px}
-h2{font-size:19px;margin:26px 0 8px}
-ul{padding-left:20px}
+h2{font-size:18px;margin:24px 0 8px}
+section&gt;h2:first-child{margin-top:0}
+ul{padding-left:20px}li{margin:4px 0}
 a{color:var(--link)}
-pre{background:var(--code-bg);border-radius:6px;padding:12px;overflow-x:auto;font:13px/1.5 &quot;IBM Plex Mono&quot;,monospace}
-.copy{float:right;font:inherit;font-size:13px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:4px;padding:2px 8px;cursor:pointer}
-footer{margin-top:36px;text-align:center;font-size:13px;color:var(--sub)}
-@media(max-width:640px){h1{font-size:23px}.tabs button{font-size:15px;padding:8px 10px}}
-td:nth-child(2){white-space:normal;min-width:180px}th,td{padding:8px 7px}
+pre{background:var(--code-bg);border-radius:8px;padding:12px;overflow-x:auto;font:13px/1.5 &quot;IBM Plex Mono&quot;,monospace;position:relative}
+.copy{position:absolute;right:8px;top:8px;font:inherit;font-size:12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:4px;padding:2px 8px;cursor:pointer}
+footer{margin-top:40px;font-size:14px;color:var(--sub)}
+@media(max-width:640px){
+  h1{font-size:24px}.lead{font-size:17px}
+  th,td{padding:10px 8px}
+  th{white-space:normal}
+  .score{min-width:0;width:22%;text-align:right}.score .t{display:none}.score .v{width:auto}
+}
 &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;main&gt;
 
+&lt;div class=&quot;top&quot;&gt;&lt;span&gt;Dataset benchmark by CUBIG&lt;/span&gt;&lt;span&gt;&lt;a href=&quot;index.html&quot; aria-current=&quot;page&quot;&gt;English&lt;/a&gt; · &lt;a href=&quot;index.ko.html&quot;&gt;한국어&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;
+
 &lt;h1&gt;Korean PII Replacement Benchmark&lt;/h1&gt;
 
-&lt;p class=&quot;desc&quot;&gt;Measures how the &lt;strong&gt;form of PII replacement&lt;/strong&gt; affects what an LLM can still answer from masked Korean text. All masked conditions cover the same gold PII spans; only the replacement form changes.&lt;/p&gt;
+&lt;p class=&quot;lead&quot;&gt;Mask PII with &lt;code&gt;***&lt;/code&gt; and the LLM can no longer answer. Replace it with a typed token like &lt;code&gt;[전화번호_A]&lt;/code&gt; and it &lt;strong&gt;answers at the level of the original text.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&quot;warn&quot;&gt;⚠️ Controlled experiment with gold PII spans (detection errors excluded). Scores reflect the replacement method, not the end-to-end performance of any product.&lt;/div&gt;
-
-&lt;details class=&quot;ko&quot;&gt;
-&lt;summary&gt;한국어 요약&lt;/summary&gt;
-&lt;p&gt;같은 개인정보 위치를 가리고, 가리는 방식만 바꿔서 같은 질문을 던졌습니다.&lt;/p&gt;
-&lt;p&gt;별표(***)로 지우면 0점, 뜻 없는 코드로 바꿨다가 복원하면 문서 76.7점, 대화 67.4점이었습니다.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;[전화번호_A]&lt;/code&gt;처럼 종류를 남겼다가 복원하면 문서 99.3점, 대화 96.3점으로 가리지 않은 원문(98.0점, 96.3점)과 같은 수준이었습니다.&lt;/p&gt;
-&lt;p&gt;종류를 남겼다가 복원하는 이 방식은 LLM Capsule이 쓰는 치환 방식입니다.&lt;/p&gt;
-&lt;p&gt;정답 위치를 미리 알려 준 통제 실험이라, 특정 제품의 전체 성능 수치는 아닙니다.&lt;/p&gt;
-&lt;/details&gt;
-
-&lt;div class=&quot;tabs&quot; role=&quot;tablist&quot;&gt;
-&lt;button role=&quot;tab&quot; aria-selected=&quot;true&quot; aria-controls=&quot;t-results&quot; id=&quot;b-results&quot;&gt;📊 Results&lt;/button&gt;
-&lt;button role=&quot;tab&quot; aria-selected=&quot;false&quot; aria-controls=&quot;t-method&quot; id=&quot;b-method&quot;&gt;📝 Method&lt;/button&gt;
-&lt;button role=&quot;tab&quot; aria-selected=&quot;false&quot; aria-controls=&quot;t-data&quot; id=&quot;b-data&quot;&gt;📂 Data&lt;/button&gt;
-&lt;button role=&quot;tab&quot; aria-selected=&quot;false&quot; aria-controls=&quot;t-cite&quot; id=&quot;b-cite&quot;&gt;📖 Citation&lt;/button&gt;
-&lt;/div&gt;
-
-&lt;section role=&quot;tabpanel&quot; id=&quot;t-results&quot; aria-labelledby=&quot;b-results&quot;&gt;
 &lt;div class=&quot;wrap&quot;&gt;
 &lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;&lt;th&gt;Rank&lt;/th&gt;&lt;th&gt;Replacement&lt;/th&gt;&lt;th&gt;Restore&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;Avg F1 ⬇&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;OpenPII F1&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;KDPII F1&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;OpenPII Acc&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;KDPII Acc&lt;/th&gt;&lt;/tr&gt;
-&lt;/thead&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;A phone number becomes&lt;/th&gt;&lt;th class=&quot;score&quot;&gt;Documents (F1)&lt;/th&gt;&lt;th class=&quot;score&quot;&gt;Dialogues (F1)&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr class=&quot;top&quot;&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;Typed entity token &lt;code&gt;[전화번호_A]&lt;/code&gt; (LLM Capsule method*)&lt;/td&gt;&lt;td&gt;yes&lt;/td&gt;&lt;td class=&quot;bar&quot;&gt;&lt;i style=&quot;width:97.8%&quot;&gt;&lt;/i&gt;&lt;span&gt;97.8&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;99.3&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;96.3&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;99.4&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;93.6&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;Hash token &lt;code&gt;96dcb10b8009&lt;/code&gt;&lt;/td&gt;&lt;td&gt;yes&lt;/td&gt;&lt;td class=&quot;bar&quot;&gt;&lt;i style=&quot;width:72.1%&quot;&gt;&lt;/i&gt;&lt;span&gt;72.1&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;76.7&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;67.4&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;72.6&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;71.0&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;Plain masking &lt;code&gt;***&lt;/code&gt;&lt;/td&gt;&lt;td&gt;no&lt;/td&gt;&lt;td class=&quot;bar&quot;&gt;&lt;i style=&quot;width:0%&quot;&gt;&lt;/i&gt;&lt;span&gt;0.0&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;0.0&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;0.0&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;0.0&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;0.0&lt;/td&gt;&lt;/tr&gt;
-&lt;tr class=&quot;ref&quot;&gt;&lt;td&gt;ref&lt;/td&gt;&lt;td&gt;Original text (no masking)&lt;/td&gt;&lt;td&gt;n/a&lt;/td&gt;&lt;td class=&quot;bar&quot;&gt;&lt;i style=&quot;width:97.2%;opacity:.45&quot;&gt;&lt;/i&gt;&lt;span&gt;97.2&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;98.0&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;96.3&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;97.4&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;85.8&lt;/td&gt;&lt;/tr&gt;
+&lt;tr class=&quot;ref&quot;&gt;&lt;td class=&quot;cond&quot;&gt;&lt;b&gt;&lt;code&gt;010-1234-5678&lt;/code&gt;&lt;/b&gt;&lt;small&gt;Original text, reference&lt;/small&gt;&lt;/td&gt;&lt;td class=&quot;score&quot;&gt;&lt;span class=&quot;v&quot;&gt;98.0&lt;/span&gt;&lt;span class=&quot;t&quot;&gt;&lt;i style=&quot;width:98%&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;score&quot;&gt;&lt;span class=&quot;v&quot;&gt;96.3&lt;/span&gt;&lt;span class=&quot;t&quot;&gt;&lt;i style=&quot;width:96.3%&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr class=&quot;ours&quot;&gt;&lt;td class=&quot;cond&quot;&gt;&lt;b&gt;&lt;code&gt;[전화번호_A]&lt;/code&gt;&lt;/b&gt;&lt;small&gt;Typed entity token, restored after the answer (LLM Capsule method*)&lt;/small&gt;&lt;/td&gt;&lt;td class=&quot;score&quot;&gt;&lt;span class=&quot;v&quot;&gt;99.3&lt;/span&gt;&lt;span class=&quot;t&quot;&gt;&lt;i style=&quot;width:99.3%&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;score&quot;&gt;&lt;span class=&quot;v&quot;&gt;96.3&lt;/span&gt;&lt;span class=&quot;t&quot;&gt;&lt;i style=&quot;width:96.3%&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;cond&quot;&gt;&lt;b&gt;&lt;code&gt;96dcb10b8009&lt;/code&gt;&lt;/b&gt;&lt;small&gt;Hash token, restored after the answer&lt;/small&gt;&lt;/td&gt;&lt;td class=&quot;score&quot;&gt;&lt;span class=&quot;v&quot;&gt;76.7&lt;/span&gt;&lt;span class=&quot;t&quot;&gt;&lt;i style=&quot;width:76.7%&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;score&quot;&gt;&lt;span class=&quot;v&quot;&gt;67.4&lt;/span&gt;&lt;span class=&quot;t&quot;&gt;&lt;i style=&quot;width:67.4%&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;cond&quot;&gt;&lt;b&gt;&lt;code&gt;***&lt;/code&gt;&lt;/b&gt;&lt;small&gt;Plain masking, cannot be restored&lt;/small&gt;&lt;/td&gt;&lt;td class=&quot;score&quot;&gt;&lt;span class=&quot;v&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;t&quot;&gt;&lt;i style=&quot;width:0&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;score&quot;&gt;&lt;span class=&quot;v&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;t&quot;&gt;&lt;i style=&quot;width:0&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
-&lt;p class=&quot;foot&quot;&gt;F1: multi-value extraction (document-level mean). Acc: single-value lookup (exact match). Avg F1 = mean of OpenPII F1 and KDPII F1. n = 500 per dataset. Answering model: gpt-6-luna, one run per condition.&lt;/p&gt;
-&lt;p class=&quot;foot&quot;&gt;* Same replacement form as LLM Capsule (typed, entity-indexed tokens restored locally after the answer). The detection step of the product is not part of this test. &lt;a href=&quot;{UTM 링크: LLM Capsule 비교 자료}&quot;&gt;See how LLM Capsule applies it&lt;/a&gt;&lt;/p&gt;
+&lt;p class=&quot;foot&quot;&gt;Task: list every identifier in the text (phone, email, account, card and ID numbers). 500 documents from OpenPII and 500 dialogues from KDPII, same PII positions in every condition. Answering model gpt-6-luna, one run per condition.&lt;br&gt;* Same replacement form as LLM Capsule. The product&#x27;s detection step is not part of this test.&lt;/p&gt;
 
-&lt;h2&gt;Paired difference: typed entity token − hash token&lt;/h2&gt;
+&lt;p class=&quot;scope&quot;&gt;&lt;b&gt;Scope.&lt;/b&gt; PII positions were given in advance, so detection errors are excluded. These scores compare replacement methods; they are not the end-to-end performance of any product.&lt;/p&gt;
+
+&lt;div class=&quot;cta&quot;&gt;
+&lt;a class=&quot;btn primary&quot; href=&quot;{UTM 링크: 데모 요청}&quot;&gt;Evaluate your own masking tool&lt;/a&gt;
+&lt;a class=&quot;btn ghost&quot; href=&quot;{UTM 링크: LLM Capsule 비교 자료}&quot;&gt;See how LLM Capsule applies it&lt;/a&gt;
+&lt;a class=&quot;btn ghost&quot; href=&quot;https://huggingface.co/datasets/CUBIGCorp/korean-pii-replacement-benchmark&quot;&gt;Dataset&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;tabs&quot; role=&quot;tablist&quot;&gt;
+&lt;button role=&quot;tab&quot; aria-selected=&quot;true&quot; aria-controls=&quot;t-detail&quot; id=&quot;b-detail&quot;&gt;Detailed results&lt;/button&gt;
+&lt;button role=&quot;tab&quot; aria-selected=&quot;false&quot; aria-controls=&quot;t-method&quot; id=&quot;b-method&quot;&gt;Method&lt;/button&gt;
+&lt;button role=&quot;tab&quot; aria-selected=&quot;false&quot; aria-controls=&quot;t-data&quot; id=&quot;b-data&quot;&gt;Data&lt;/button&gt;
+&lt;button role=&quot;tab&quot; aria-selected=&quot;false&quot; aria-controls=&quot;t-cite&quot; id=&quot;b-cite&quot;&gt;Citation&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;section role=&quot;tabpanel&quot; id=&quot;t-detail&quot; aria-labelledby=&quot;b-detail&quot;&gt;
+&lt;h2&gt;Both tasks&lt;/h2&gt;
+&lt;div class=&quot;wrap&quot;&gt;
+&lt;table&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Replacement&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;Lookup Acc&lt;br&gt;documents&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;Lookup Acc&lt;br&gt;dialogues&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;Extraction F1&lt;br&gt;documents&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;Extraction F1&lt;br&gt;dialogues&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&quot;ref&quot;&gt;&lt;td&gt;Original text (reference)&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;97.4&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;85.8&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;98.0&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;96.3&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Typed entity token &lt;code&gt;[전화번호_A]&lt;/code&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;99.4&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;93.6&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;99.3&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;96.3&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Hash token &lt;code&gt;96dcb10b8009&lt;/code&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;72.6&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;71.0&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;76.7&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;67.4&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Plain masking &lt;code&gt;***&lt;/code&gt;&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;0.0&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;0.0&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;0.0&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;0.0&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;p class=&quot;foot&quot;&gt;Lookup: answer one value such as &quot;What is Minji&#x27;s phone number?&quot;, exact match after restoration. Extraction: return all identifiers as a list, document-level F1. n = 500 per dataset.&lt;/p&gt;
+
+&lt;h2&gt;Typed token minus hash token&lt;/h2&gt;
 &lt;div class=&quot;wrap&quot;&gt;
 &lt;table&gt;
 &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Dataset&lt;/th&gt;&lt;th&gt;Task&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;Difference&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;95% interval&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;OpenPII&lt;/td&gt;&lt;td&gt;Single-value lookup&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+26.8 pp&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+23.0 to +30.6&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;OpenPII&lt;/td&gt;&lt;td&gt;Multi-value extraction&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+22.6 pp&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+19.7 to +25.5&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;KDPII&lt;/td&gt;&lt;td&gt;Single-value lookup&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+22.6 pp&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+18.6 to +26.6&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;KDPII&lt;/td&gt;&lt;td&gt;Multi-value extraction&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+28.9 pp&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+26.1 to +31.9&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Documents (OpenPII)&lt;/td&gt;&lt;td&gt;Lookup&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+26.8 pp&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+23.0 to +30.6&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Documents (OpenPII)&lt;/td&gt;&lt;td&gt;Extraction&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+22.6 pp&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+19.7 to +25.5&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Dialogues (KDPII)&lt;/td&gt;&lt;td&gt;Lookup&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+22.6 pp&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+18.6 to +26.6&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Dialogues (KDPII)&lt;/td&gt;&lt;td&gt;Extraction&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+28.9 pp&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+26.1 to +31.9&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
@@ -256,27 +283,12 @@ td:nth-child(2){white-space:normal;min-width:180px}th,td{padding:8px 7px}
 &lt;/section&gt;
 
 &lt;section role=&quot;tabpanel&quot; id=&quot;t-method&quot; aria-labelledby=&quot;b-method&quot; hidden&gt;
-&lt;h2&gt;Conditions&lt;/h2&gt;
-&lt;div class=&quot;wrap&quot;&gt;
-&lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Condition&lt;/th&gt;&lt;th&gt;A phone number becomes&lt;/th&gt;&lt;th&gt;After the answer&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Original text&lt;/td&gt;&lt;td&gt;&lt;code&gt;010-1234-5678&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Scored as is&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Plain masking&lt;/td&gt;&lt;td&gt;&lt;code&gt;***&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Cannot be restored&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Hash token&lt;/td&gt;&lt;td&gt;&lt;code&gt;96dcb10b8009&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Restored with a local mapping table&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Typed entity token&lt;/td&gt;&lt;td&gt;&lt;code&gt;[전화번호_A]&lt;/code&gt;&lt;/td&gt;&lt;td&gt;Restored with a local mapping table&lt;/td&gt;&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
+&lt;h2&gt;How replacement works&lt;/h2&gt;
 &lt;ul&gt;
+&lt;li&gt;Every condition hides the same gold PII positions; only the replacement form changes.&lt;/li&gt;
 &lt;li&gt;The same value within a document always maps to the same token.&lt;/li&gt;
-&lt;li&gt;Mapping tables and original values are never sent to the model; restoration runs locally after the answer.&lt;/li&gt;
+&lt;li&gt;Mapping tables and original values are never sent to the model. Restoration runs locally after the answer.&lt;/li&gt;
 &lt;li&gt;Hash and typed tokens are both restorable. The difference is whether the model can see that a slot holds a phone number.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Tasks&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Single-value lookup&lt;/strong&gt;: e.g. &quot;What is Minji&#x27;s phone number?&quot; The restored answer must exactly match the gold value.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Multi-value extraction&lt;/strong&gt;: list all identifiers (phone numbers, emails, account, card and ID numbers) as an array. F1 penalizes both missing and extra values.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Limitations&lt;/h2&gt;
 &lt;ul&gt;
@@ -306,7 +318,7 @@ td:nth-child(2){white-space:normal;min-width:180px}th,td{padding:8px 7px}
 &lt;/section&gt;
 
 &lt;section role=&quot;tabpanel&quot; id=&quot;t-cite&quot; aria-labelledby=&quot;b-cite&quot; hidden&gt;
-&lt;pre id=&quot;bib&quot;&gt;&lt;button class=&quot;copy&quot; type=&quot;button&quot; onclick=&quot;navigator.clipboard&amp;&amp;navigator.clipboard.writeText(document.getElementById(&#x27;bibtext&#x27;).textContent)&quot;&gt;Copy&lt;/button&gt;&lt;span id=&quot;bibtext&quot;&gt;@misc{cubig2026koreanpiireplacement,
+&lt;pre&gt;&lt;button class=&quot;copy&quot; type=&quot;button&quot; onclick=&quot;navigator.clipboard&amp;&amp;navigator.clipboard.writeText(document.getElementById(&#x27;bibtext&#x27;).textContent)&quot;&gt;Copy&lt;/button&gt;&lt;span id=&quot;bibtext&quot;&gt;@misc{cubig2026koreanpiireplacement,
   title  = {Korean PII Replacement Benchmark},
   author = {CUBIG},
   year   = {2026},
@@ -315,9 +327,7 @@ td:nth-child(2){white-space:normal;min-width:180px}th,td{padding:8px 7px}
 &lt;p class=&quot;foot&quot;&gt;Please also cite OpenPII (Ai4Privacy) and KDPII when you use this benchmark.&lt;/p&gt;
 &lt;/section&gt;
 
-&lt;footer&gt;
-Built by &lt;a href=&quot;https://www.cubig.ai&quot;&gt;CUBIG&lt;/a&gt;, the team behind &lt;a href=&quot;{UTM 링크: llmcapsule.ai}&quot;&gt;LLM Capsule&lt;/a&gt;.
-&lt;/footer&gt;
+&lt;footer&gt;Built by &lt;a href=&quot;https://www.cubig.ai&quot;&gt;CUBIG&lt;/a&gt;, the team behind &lt;a href=&quot;{UTM 링크: llmcapsule.ai}&quot;&gt;LLM Capsule&lt;/a&gt;.&lt;/footer&gt;
 
 &lt;/main&gt;
 &lt;script&gt;
@@ -336,13 +346,13 @@ document.querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;).forEach(function(b
 </div>
 <div class="notes">
 <div class="note"><span class="pin">8</span><b>톡방에서 누르면 보이는 화면</b><p>위쪽 회색 띠(Spaces, 좋아요, Running)는 허깅페이스가 붙이는 틀이고, 그 아래가 우리가 만든 space-index.html입니다.</p></div>
-<div class="note"><b>읽는 순서</b><p>제목과 한 줄 설명 → ⚠️ 주의 문구 → 한국어 요약(누르면 펼쳐짐) → 순위표. 1위가 우리 방식(종류 표식)이고, 원문은 회색 기준선입니다.</p></div>
-<div class="note"><b>탭</b><p>Method는 방식 설명과 한계, Data는 원본 출처, Citation은 인용 형식입니다. 기술 질문이 오면 이 탭을 가리키면 됩니다.</p></div>
-<div class="note"><b>LLM Capsule 연결</b><p>한국어 요약 마지막 줄, 순위표 1위 이름, 표 아래 각주와 「See how LLM Capsule applies it」 링크(LLM Capsule 비교 자료로 연결), 맨 아래 "Built by CUBIG" 네 곳입니다. 데모 신청 버튼은 넣지 않고 데이터셋 페이지 ⑥에만 둡니다.</p></div>
+<div class="note"><b>읽는 순서</b><p>한 줄 결론 → 전화번호 하나가 방식별로 어떻게 바뀌는지와 점수(원문 기준선 → 종류 표식 → 뜻 없는 코드 → 별표) → 범위 안내 → 버튼 세 개. 순위(Rank)는 넣지 않았습니다. 조건 3개로 우리 방식을 1위에 올리면 비교 실험보다 홍보표로 읽히기 때문입니다. 한국어는 오른쪽 위 「한국어」로 넘어가는 별도 페이지입니다.</p></div>
+<div class="note"><b>탭</b><p>Detailed results는 두 과제 전체 점수와 신뢰구간, Method는 방식 설명과 한계, Data는 원본 출처, Citation은 인용 형식입니다. 기술 질문이 오면 이 탭을 가리키면 됩니다.</p></div>
+<div class="note"><b>LLM Capsule 연결</b><p>표의 종류 표식 줄과 각주, 버튼 「Evaluate your own masking tool」(데모 신청)과 「See how LLM Capsule applies it」(비교 자료), 맨 아래 "Built by CUBIG"입니다. v0.1에서는 데모 버튼을 데이터셋 페이지 ⑥에만 뒀는데, 톡방에서 들어온 사람이 다음으로 갈 곳이 없어 v0.2에서 결과 페이지에도 넣었습니다. 문구는 영업 대신 「내 도구로 평가해 보기」로 썼습니다.</p></div>
 </div>
 </div>
 
 </div>
-<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · 게시 미리보기 · v0.1 (2026-10-13)</div>
+<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · 게시 미리보기 · v0.2 (2026-10-15)</div>
 </body>
 </html>
