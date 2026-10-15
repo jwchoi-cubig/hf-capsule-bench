@@ -225,8 +225,8 @@ footer{margin-top:40px;font-size:14px;color:var(--sub)}
 
 &lt;h1&gt;Korean PII Replacement Benchmark&lt;/h1&gt;
 
-&lt;p class=&quot;lead&quot;&gt;&lt;strong&gt;Protect personal data and still put your company data to work with LLMs.&lt;/strong&gt;&lt;/p&gt;
-&lt;p class=&quot;proof&quot;&gt;With the LLM Capsule method, text sent with PII replaced scored &lt;b&gt;99.3&lt;/b&gt;, on par with the unmasked original (98.0). Plain &lt;code&gt;***&lt;/code&gt; masking scored &lt;b&gt;0&lt;/b&gt;: once masked that way, the data can no longer be used for tasks that need the original values.&lt;/p&gt;
+&lt;p class=&quot;lead&quot;&gt;&lt;strong&gt;Replacing PII with typed tokens keeps LLM answers as accurate as the unmasked text; plain &lt;code&gt;***&lt;/code&gt; masking makes them unusable.&lt;/strong&gt;&lt;/p&gt;
+&lt;p class=&quot;proof&quot;&gt;Extraction F1 on 500 Korean documents: typed token (LLM Capsule method) &lt;b&gt;99.3&lt;/b&gt;, original text 98.0, hash token 76.7, &lt;code&gt;***&lt;/code&gt; &lt;b&gt;0&lt;/b&gt;.&lt;/p&gt;
 
 &lt;p class=&quot;task&quot;&gt;The table shows the &lt;b&gt;extraction&lt;/b&gt; task: list every identifier in the text (phone, email, account, card and ID numbers). F1 counts both missed and wrong values; 100 is perfect. Results for single-value lookup are under Detailed results.&lt;/p&gt;
 
@@ -358,6 +358,6 @@ document.querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;).forEach(function(b
 </div>
 
 </div>
-<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · 게시 미리보기 · v0.8 (2026-10-15)</div>
+<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · 게시 미리보기 · v0.9 (2026-10-15)</div>
 </body>
 </html>

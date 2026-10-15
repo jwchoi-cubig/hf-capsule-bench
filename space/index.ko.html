@@ -83,8 +83,8 @@ footer{margin-top:40px;font-size:14px;color:var(--sub)}
 
 <h1>한국어 개인정보 치환 벤치마크</h1>
 
-<p class="lead"><strong>개인정보는 보호하면서, 회사 데이터는 AI 업무에 그대로 활용할 수 있습니다.</strong></p>
-<p class="proof">LLM Capsule 방식으로 개인정보를 가려 보내도 답의 정확도는 <b>99.3점</b>으로, 가리지 않은 원문(98.0점)과 같은 수준이었습니다. 반면 흔히 쓰는 <code>***</code> 별표 처리는 <b>0점</b>이라, 원래 값이 필요한 업무에는 데이터를 쓸 수 없게 됩니다.</p>
+<p class="lead"><strong>개인정보를 항목명 표식으로 바꾸면 가리지 않은 원문만큼 정확한 답을 얻을 수 있고, <code>***</code>로 가리면 답을 쓸 수 없게 됩니다.</strong></p>
+<p class="proof">문서 500건 전체 추출 F1 기준으로 항목명 표식(LLM Capsule 방식) <b>99.3점</b>, 원문 98.0점, 무작위 코드 76.7점, 별표 처리 <b>0점</b>입니다.</p>
 
 <p class="task">아래 표는 본문의 식별 정보(전화번호, 이메일, 계좌번호, 카드번호, 주민등록번호 등)를 빠짐없이 찾아 목록으로 답하는 <b>전체 추출</b> 과제의 점수입니다. F1은 빠뜨린 값과 잘못 찾은 값을 함께 따진 점수로, 100점이 만점입니다. 값 하나를 묻는 단일 값 찾기 결과는 아래 상세 결과에 있습니다.</p>
 
@@ -203,6 +203,6 @@ document.querySelectorAll('[role="tab"]').forEach(function(b){
   });
 });
 </script>
-<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · Space 결과 페이지 한국어판 · v0.8 (2026-10-15)</div>
+<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · Space 결과 페이지 한국어판 · v0.9 (2026-10-15)</div>
 </body>
 </html>
