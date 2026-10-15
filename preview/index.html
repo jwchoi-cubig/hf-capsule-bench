@@ -171,7 +171,8 @@ main{max-width:880px;margin:0 auto;padding:28px 16px 48px}
 .top a{color:var(--sub);text-decoration:none}.top a[aria-current]{color:var(--ink);font-weight:600}
 h1{font-size:30px;line-height:1.25;margin:10px 0 14px}
 .lead{font-size:20px;line-height:1.5;margin:0 0 22px}
-.lead strong{color:var(--accent)}
+.lead strong{color:var(--ink)}
+.proof{font-size:17px;line-height:1.6;margin:-10px 0 22px}.proof b{color:var(--accent)}
 code{font-family:&quot;IBM Plex Mono&quot;,&quot;Noto Sans KR&quot;,monospace;background:var(--code-bg);padding:1px 6px;border-radius:4px;font-size:.9em;white-space:nowrap}
 .wrap{border:1px solid var(--line);border-radius:8px;overflow-x:auto}
 table{width:100%;border-collapse:collapse;background:var(--panel);font-size:15px}
@@ -224,7 +225,8 @@ footer{margin-top:40px;font-size:14px;color:var(--sub)}
 
 &lt;h1&gt;Korean PII Replacement Benchmark&lt;/h1&gt;
 
-&lt;p class=&quot;lead&quot;&gt;Mask PII with &lt;code&gt;***&lt;/code&gt; and you can no longer get answers that need the original value. &lt;strong&gt;LLM Capsule&lt;/strong&gt; replaces it with a typed token like &lt;code&gt;[전화번호_A]&lt;/code&gt; and restores it after the answer, and the LLM &lt;strong&gt;answers at the level of the original text.&lt;/strong&gt;&lt;/p&gt;
+&lt;p class=&quot;lead&quot;&gt;&lt;strong&gt;Protect personal data and still put your company data to work with LLMs.&lt;/strong&gt;&lt;/p&gt;
+&lt;p class=&quot;proof&quot;&gt;With the LLM Capsule method, text sent with PII replaced scored &lt;b&gt;99.3&lt;/b&gt;, on par with the unmasked original (98.0). Plain &lt;code&gt;***&lt;/code&gt; masking scored &lt;b&gt;0&lt;/b&gt;: once masked that way, the data can no longer be used for tasks that need the original values.&lt;/p&gt;
 
 &lt;p class=&quot;task&quot;&gt;The table shows the &lt;b&gt;extraction&lt;/b&gt; task: list every identifier in the text (phone, email, account, card and ID numbers). F1 counts both missed and wrong values; 100 is perfect. Results for single-value lookup are under Detailed results.&lt;/p&gt;
 
@@ -356,6 +358,6 @@ document.querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;).forEach(function(b
 </div>
 
 </div>
-<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · 게시 미리보기 · v0.6 (2026-10-15)</div>
+<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · 게시 미리보기 · v0.7 (2026-10-15)</div>
 </body>
 </html>

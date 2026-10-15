@@ -19,7 +19,7 @@ tags:
 
 # Korean PII Replacement Benchmark
 
-&gt; **한국어 요약** 같은 위치의 개인정보를 가리고 가리는 방식만 달리해 LLM에 같은 질문을 던졌습니다. 별표(\*\*\*)로 가리면 0점, 무작위 코드로 바꿨다가 복원하면 문서 76.7점에 그쳤지만, LLM Capsule처럼 `[전화번호_A]` 같은 항목명 표식으로 바꿨다가 복원하면 문서 99.3점으로 가리지 않은 원문(98.0점)과 같은 수준이었습니다.
+&gt; **한국어 요약** 개인정보는 보호하면서 회사 데이터는 AI 업무에 그대로 활용할 수 있다는 것을 보여 주는 실험입니다. 같은 위치의 개인정보를 가리고 가리는 방식만 달리해 LLM에 같은 질문을 던졌습니다. 별표(\*\*\*)로 가리면 0점, 무작위 코드로 바꿨다가 복원하면 문서 76.7점에 그쳤지만, LLM Capsule처럼 `[전화번호_A]` 같은 항목명 표식으로 바꿨다가 복원하면 문서 99.3점으로 가리지 않은 원문(98.0점)과 같은 수준이었습니다.
 
 Korean PII Replacement Benchmark measures how the **form of PII replacement** affects what an LLM can still answer from masked Korean text. This is an open sample of 1,000 annotated items (500 documents from OpenPII, 500 dialogues from KDPII) used in our evaluation. All masked conditions cover the same gold PII spans; only the replacement form changes.
 
@@ -77,5 +77,5 @@ To evaluate your own masking tool or documents with the full setup, [request a d
   url    = {https://huggingface.co/datasets/CUBIGCorp/korean-pii-replacement-benchmark}
 }
 ```
-</pre></main><div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · 데이터셋 설명 · v0.6 (2026-10-15)</div>
+</pre></main><div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · 데이터셋 설명 · v0.7 (2026-10-15)</div>
 </body></html>

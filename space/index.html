@@ -29,7 +29,8 @@ main{max-width:880px;margin:0 auto;padding:28px 16px 48px}
 .top a{color:var(--sub);text-decoration:none}.top a[aria-current]{color:var(--ink);font-weight:600}
 h1{font-size:30px;line-height:1.25;margin:10px 0 14px}
 .lead{font-size:20px;line-height:1.5;margin:0 0 22px}
-.lead strong{color:var(--accent)}
+.lead strong{color:var(--ink)}
+.proof{font-size:17px;line-height:1.6;margin:-10px 0 22px}.proof b{color:var(--accent)}
 code{font-family:"IBM Plex Mono","Noto Sans KR",monospace;background:var(--code-bg);padding:1px 6px;border-radius:4px;font-size:.9em;white-space:nowrap}
 .wrap{border:1px solid var(--line);border-radius:8px;overflow-x:auto}
 table{width:100%;border-collapse:collapse;background:var(--panel);font-size:15px}
@@ -82,7 +83,8 @@ footer{margin-top:40px;font-size:14px;color:var(--sub)}
 
 <h1>Korean PII Replacement Benchmark</h1>
 
-<p class="lead">Mask PII with <code>***</code> and you can no longer get answers that need the original value. <strong>LLM Capsule</strong> replaces it with a typed token like <code>[전화번호_A]</code> and restores it after the answer, and the LLM <strong>answers at the level of the original text.</strong></p>
+<p class="lead"><strong>Protect personal data and still put your company data to work with LLMs.</strong></p>
+<p class="proof">With the LLM Capsule method, text sent with PII replaced scored <b>99.3</b>, on par with the unmasked original (98.0). Plain <code>***</code> masking scored <b>0</b>: once masked that way, the data can no longer be used for tasks that need the original values.</p>
 
 <p class="task">The table shows the <b>extraction</b> task: list every identifier in the text (phone, email, account, card and ID numbers). F1 counts both missed and wrong values; 100 is perfect. Results for single-value lookup are under Detailed results.</p>
 
@@ -201,6 +203,6 @@ document.querySelectorAll('[role="tab"]').forEach(function(b){
   });
 });
 </script>
-<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · Space 결과 페이지 · v0.6 (2026-10-15)</div>
+<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · Space 결과 페이지 · v0.7 (2026-10-15)</div>
 </body>
 </html>

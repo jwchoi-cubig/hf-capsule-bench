@@ -29,7 +29,8 @@ main{max-width:880px;margin:0 auto;padding:28px 16px 48px}
 .top a{color:var(--sub);text-decoration:none}.top a[aria-current]{color:var(--ink);font-weight:600}
 h1{font-size:30px;line-height:1.25;margin:10px 0 14px}
 .lead{font-size:20px;line-height:1.5;margin:0 0 22px}
-.lead strong{color:var(--accent)}
+.lead strong{color:var(--ink)}
+.proof{font-size:17px;line-height:1.6;margin:-10px 0 22px}.proof b{color:var(--accent)}
 code{font-family:"IBM Plex Mono","Noto Sans KR",monospace;background:var(--code-bg);padding:1px 6px;border-radius:4px;font-size:.9em;white-space:nowrap}
 .wrap{border:1px solid var(--line);border-radius:8px;overflow-x:auto}
 table{width:100%;border-collapse:collapse;background:var(--panel);font-size:15px}
@@ -82,7 +83,8 @@ footer{margin-top:40px;font-size:14px;color:var(--sub)}
 
 <h1>한국어 개인정보 치환 벤치마크</h1>
 
-<p class="lead">개인정보를 <code>***</code>로 가리면 원래 값이 필요한 질문에는 답을 얻을 수 없습니다. <strong>LLM Capsule</strong>처럼 <code>[전화번호_A]</code> 같은 항목명 표식으로 바꿔 보내고, 답을 받은 뒤 원래 값으로 되돌리면 <strong>가리지 않은 원문과 같은 수준의 답</strong>을 얻을 수 있습니다.</p>
+<p class="lead"><strong>개인정보는 보호하면서, 회사 데이터는 AI 업무에 그대로 활용할 수 있습니다.</strong></p>
+<p class="proof">LLM Capsule 방식으로 개인정보를 가려 보내도 답의 정확도는 <b>99.3점</b>으로, 가리지 않은 원문(98.0점)과 같은 수준이었습니다. 반면 흔히 쓰는 <code>***</code> 별표 처리는 <b>0점</b>이라, 원래 값이 필요한 업무에는 데이터를 쓸 수 없게 됩니다.</p>
 
 <p class="task">아래 표는 본문의 식별 정보(전화번호, 이메일, 계좌번호, 카드번호, 주민등록번호 등)를 빠짐없이 찾아 목록으로 답하는 <b>전체 추출</b> 과제의 점수입니다. F1은 빠뜨린 값과 잘못 찾은 값을 함께 따진 점수로, 100점이 만점입니다. 값 하나를 묻는 단일 값 찾기 결과는 아래 상세 결과에 있습니다.</p>
 
@@ -201,6 +203,6 @@ document.querySelectorAll('[role="tab"]').forEach(function(b){
   });
 });
 </script>
-<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · Space 결과 페이지 한국어판 · v0.6 (2026-10-15)</div>
+<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · Space 결과 페이지 한국어판 · v0.7 (2026-10-15)</div>
 </body>
 </html>
