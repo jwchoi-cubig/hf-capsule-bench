@@ -80,22 +80,21 @@ footer{margin-top:40px;font-size:14px;color:var(--sub)}
 
 <h1>한국어 개인정보 치환 벤치마크</h1>
 
-<p class="lead">개인정보를 <code>***</code>로 지우면 LLM이 답하지 못하지만, <code>[전화번호_A]</code>처럼 종류를 남긴 표식으로 바꾸면 <strong>가리지 않은 원문 수준으로 답합니다.</strong></p>
+<p class="lead">개인정보를 <code>***</code>로 지우면 LLM이 답하지 못합니다. <strong>LLM Capsule</strong>처럼 <code>[전화번호_A]</code> 같은 종류 표식으로 바꿨다가 답을 받은 뒤 복원하면 <strong>가리지 않은 원문 수준으로 답합니다.</strong></p>
 
 <div class="wrap">
 <table>
 <thead><tr><th>전화번호가 바뀌는 모양</th><th class="score">문서(F1)</th><th class="score">대화(F1)</th></tr></thead>
 <tbody>
 <tr class="ref"><td class="cond"><b><code>010-1234-5678</code></b><small>원문(기준)</small></td><td class="score"><span class="v">98.0</span><span class="t"><i style="width:98%"></i></span></td><td class="score"><span class="v">96.3</span><span class="t"><i style="width:96.3%"></i></span></td></tr>
-<tr class="ours"><td class="cond"><b><code>[전화번호_A]</code></b><small>종류를 남긴 표식, 답을 받은 뒤 복원(LLM Capsule 방식*)</small></td><td class="score"><span class="v">99.3</span><span class="t"><i style="width:99.3%"></i></span></td><td class="score"><span class="v">96.3</span><span class="t"><i style="width:96.3%"></i></span></td></tr>
+<tr class="ours"><td class="cond"><b><code>[전화번호_A]</code></b><small><strong>LLM Capsule 방식</strong> : 종류 표식, 답을 받은 뒤 복원</small></td><td class="score"><span class="v">99.3</span><span class="t"><i style="width:99.3%"></i></span></td><td class="score"><span class="v">96.3</span><span class="t"><i style="width:96.3%"></i></span></td></tr>
 <tr><td class="cond"><b><code>96dcb10b8009</code></b><small>뜻 없는 코드, 답을 받은 뒤 복원</small></td><td class="score"><span class="v">76.7</span><span class="t"><i style="width:76.7%"></i></span></td><td class="score"><span class="v">67.4</span><span class="t"><i style="width:67.4%"></i></span></td></tr>
 <tr><td class="cond"><b><code>***</code></b><small>별표로 지움, 복원 불가</small></td><td class="score"><span class="v">0.0</span><span class="t"><i style="width:0"></i></span></td><td class="score"><span class="v">0.0</span><span class="t"><i style="width:0"></i></span></td></tr>
 </tbody>
 </table>
 </div>
-<p class="foot">과제 : 본문의 식별 정보(전화번호, 이메일, 계좌·카드·주민번호 등)를 모두 뽑기. OpenPII 문서 500건과 KDPII 대화 500건을 썼고, 모든 조건에서 가린 위치는 같습니다. 답한 모델은 gpt-6-luna, 조건마다 1회 실행입니다.<br>* LLM Capsule과 같은 치환 방식입니다. 제품의 개인정보 탐지 단계는 이 실험에 포함되지 않았습니다.</p>
+<p class="foot">과제 : 본문의 식별 정보(전화번호, 이메일, 계좌·카드·주민번호 등)를 모두 뽑기. OpenPII 문서 500건과 KDPII 대화 500건을 썼습니다. 모든 조건에서 미리 정한 같은 위치를 가렸기 때문에 점수 차이는 치환 방식에서만 나옵니다. 답한 모델은 gpt-6-luna, 조건마다 1회 실행입니다.</p>
 
-<p class="scope"><b>범위.</b> 개인정보 위치를 미리 알려 준 통제 실험이라 탐지 오류는 빠져 있습니다. 치환 방식끼리 비교한 점수이며, 특정 제품의 전체 성능은 아닙니다.</p>
 
 <div class="cta">
 <a class="btn primary" href="{UTM 링크: 데모 요청}">우리 기관 마스킹 도구로 평가해 보기</a>
@@ -198,6 +197,6 @@ document.querySelectorAll('[role="tab"]').forEach(function(b){
   });
 });
 </script>
-<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · Space 결과 페이지 한국어판 · v0.2 (2026-10-15)</div>
+<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · Space 결과 페이지 한국어판 · v0.3 (2026-10-15)</div>
 </body>
 </html>

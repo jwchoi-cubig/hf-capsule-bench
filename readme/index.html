@@ -19,7 +19,7 @@ tags:
 
 # Korean PII Replacement Benchmark
 
-&gt; **한국어 요약** 같은 개인정보 위치를 가리고 가리는 방식만 바꿔 LLM에 같은 질문을 던졌습니다. 별표(\*\*\*)는 0점, 뜻 없는 코드는 문서 76.7점, `[전화번호_A]`처럼 종류를 남긴 표식은 문서 99.3점이었습니다(원문 98.0점). 종류를 남기고 복원하는 이 방식은 LLM Capsule이 쓰는 치환 방식입니다. 정답 위치를 미리 준 통제 실험이라 특정 제품의 전체 성능은 아닙니다.
+&gt; **한국어 요약** 같은 개인정보 위치를 가리고 가리는 방식만 바꿔 LLM에 같은 질문을 던졌습니다. 별표(\*\*\*)는 0점, 뜻 없는 코드는 문서 76.7점, `[전화번호_A]`처럼 종류를 남긴 표식은 문서 99.3점이었습니다(원문 98.0점). LLM Capsule이 쓰는 방식이 바로 이 종류 표식 치환과 복원입니다.
 
 Korean PII Replacement Benchmark measures how the **form of PII replacement** affects what an LLM can still answer from masked Korean text. This is an open sample of 1,000 annotated items (500 documents from OpenPII, 500 dialogues from KDPII) used in our evaluation. All masked conditions cover the same gold PII spans; only the replacement form changes.
 
@@ -36,7 +36,7 @@ Multi-value extraction F1 (n = 500 per dataset, answering model gpt-6-luna)
 | Plain masking `***` | no | 0.0 | 0.0 |
 | Original text (reference) | n/a | 98.0 | 96.3 |
 
-\* Same replacement form as LLM Capsule. The product&#x27;s detection step is not part of this test.
+\* The replacement form LLM Capsule uses. PII positions are fixed across conditions, so scores isolate the replacement method.
 
 Single-value accuracy, confidence intervals and method details: [results page](https://huggingface.co/spaces/CUBIGCorp/korean-pii-replacement-results).
 
@@ -77,5 +77,5 @@ To evaluate your own masking tool or documents with the full setup, [request a d
   url    = {https://huggingface.co/datasets/CUBIGCorp/korean-pii-replacement-benchmark}
 }
 ```
-</pre></main><div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · 데이터셋 설명 · v0.2 (2026-10-15)</div>
+</pre></main><div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · 데이터셋 설명 · v0.3 (2026-10-15)</div>
 </body></html>

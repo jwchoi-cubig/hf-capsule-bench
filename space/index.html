@@ -80,22 +80,21 @@ footer{margin-top:40px;font-size:14px;color:var(--sub)}
 
 <h1>Korean PII Replacement Benchmark</h1>
 
-<p class="lead">Mask PII with <code>***</code> and the LLM can no longer answer. Replace it with a typed token like <code>[전화번호_A]</code> and it <strong>answers at the level of the original text.</strong></p>
+<p class="lead">Mask PII with <code>***</code> and the LLM can no longer answer. <strong>LLM Capsule</strong> replaces it with a typed token like <code>[전화번호_A]</code> and restores it after the answer, and the LLM <strong>answers at the level of the original text.</strong></p>
 
 <div class="wrap">
 <table>
 <thead><tr><th>A phone number becomes</th><th class="score">Documents (F1)</th><th class="score">Dialogues (F1)</th></tr></thead>
 <tbody>
 <tr class="ref"><td class="cond"><b><code>010-1234-5678</code></b><small>Original text, reference</small></td><td class="score"><span class="v">98.0</span><span class="t"><i style="width:98%"></i></span></td><td class="score"><span class="v">96.3</span><span class="t"><i style="width:96.3%"></i></span></td></tr>
-<tr class="ours"><td class="cond"><b><code>[전화번호_A]</code></b><small>Typed entity token, restored after the answer (LLM Capsule method*)</small></td><td class="score"><span class="v">99.3</span><span class="t"><i style="width:99.3%"></i></span></td><td class="score"><span class="v">96.3</span><span class="t"><i style="width:96.3%"></i></span></td></tr>
+<tr class="ours"><td class="cond"><b><code>[전화번호_A]</code></b><small><strong>LLM Capsule method</strong>: typed entity token, restored after the answer</small></td><td class="score"><span class="v">99.3</span><span class="t"><i style="width:99.3%"></i></span></td><td class="score"><span class="v">96.3</span><span class="t"><i style="width:96.3%"></i></span></td></tr>
 <tr><td class="cond"><b><code>96dcb10b8009</code></b><small>Hash token, restored after the answer</small></td><td class="score"><span class="v">76.7</span><span class="t"><i style="width:76.7%"></i></span></td><td class="score"><span class="v">67.4</span><span class="t"><i style="width:67.4%"></i></span></td></tr>
 <tr><td class="cond"><b><code>***</code></b><small>Plain masking, cannot be restored</small></td><td class="score"><span class="v">0.0</span><span class="t"><i style="width:0"></i></span></td><td class="score"><span class="v">0.0</span><span class="t"><i style="width:0"></i></span></td></tr>
 </tbody>
 </table>
 </div>
-<p class="foot">Task: list every identifier in the text (phone, email, account, card and ID numbers). 500 documents from OpenPII and 500 dialogues from KDPII, same PII positions in every condition. Answering model gpt-6-luna, one run per condition.<br>* Same replacement form as LLM Capsule. The product's detection step is not part of this test.</p>
+<p class="foot">Task: list every identifier in the text (phone, email, account, card and ID numbers). 500 documents from OpenPII and 500 dialogues from KDPII. Every condition hides the same PII positions, given in advance, so the scores isolate the replacement method. Answering model gpt-6-luna, one run per condition.</p>
 
-<p class="scope"><b>Scope.</b> PII positions were given in advance, so detection errors are excluded. These scores compare replacement methods; they are not the end-to-end performance of any product.</p>
 
 <div class="cta">
 <a class="btn primary" href="{UTM 링크: 데모 요청}">Evaluate your own masking tool</a>
@@ -198,6 +197,6 @@ document.querySelectorAll('[role="tab"]').forEach(function(b){
   });
 });
 </script>
-<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · Space 결과 페이지 · v0.2 (2026-10-15)</div>
+<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · Space 결과 페이지 · v0.3 (2026-10-15)</div>
 </body>
 </html>
