@@ -190,6 +190,8 @@ tr.ours td{background:var(--accent-soft)}
 tr.ours .score .t i{background:var(--accent)}
 tr.ref td{color:var(--sub)}
 .foot{font-size:13px;color:var(--sub);margin:8px 2px 0}
+.task{font-size:14px;color:var(--sub);margin:0 0 10px}.task b{color:var(--ink)}
+.sub{font-size:14px;color:var(--sub);margin:-2px 0 10px}
 .scope{margin:18px 0 0;padding:12px 14px;border:1px solid var(--line);border-radius:8px;font-size:14px;color:var(--sub)}
 .scope b{color:var(--ink)}
 .cta{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 34px}
@@ -222,11 +224,13 @@ footer{margin-top:40px;font-size:14px;color:var(--sub)}
 
 &lt;h1&gt;Korean PII Replacement Benchmark&lt;/h1&gt;
 
-&lt;p class=&quot;lead&quot;&gt;Mask PII with &lt;code&gt;***&lt;/code&gt; and the LLM can no longer answer. &lt;strong&gt;LLM Capsule&lt;/strong&gt; replaces it with a typed token like &lt;code&gt;[전화번호_A]&lt;/code&gt; and restores it after the answer, and the LLM &lt;strong&gt;answers at the level of the original text.&lt;/strong&gt;&lt;/p&gt;
+&lt;p class=&quot;lead&quot;&gt;Mask PII with &lt;code&gt;***&lt;/code&gt; and you can no longer get answers that need the original value. &lt;strong&gt;LLM Capsule&lt;/strong&gt; replaces it with a typed token like &lt;code&gt;[전화번호_A]&lt;/code&gt; and restores it after the answer, and the LLM &lt;strong&gt;answers at the level of the original text.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p class=&quot;task&quot;&gt;The table shows the &lt;b&gt;extraction&lt;/b&gt; task: list every identifier in the text (phone, email, account, card and ID numbers). F1 counts both missed and wrong values; 100 is perfect. Results for single-value lookup are under Detailed results.&lt;/p&gt;
 
 &lt;div class=&quot;wrap&quot;&gt;
 &lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;A phone number becomes&lt;/th&gt;&lt;th class=&quot;score&quot;&gt;Documents (F1)&lt;/th&gt;&lt;th class=&quot;score&quot;&gt;Dialogues (F1)&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;How the phone number is handled&lt;/th&gt;&lt;th class=&quot;score&quot;&gt;500 documents (F1)&lt;/th&gt;&lt;th class=&quot;score&quot;&gt;500 dialogues (F1)&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr class=&quot;ref&quot;&gt;&lt;td class=&quot;cond&quot;&gt;&lt;b&gt;&lt;code&gt;010-1234-5678&lt;/code&gt;&lt;/b&gt;&lt;small&gt;Original text, reference&lt;/small&gt;&lt;/td&gt;&lt;td class=&quot;score&quot;&gt;&lt;span class=&quot;v&quot;&gt;98.0&lt;/span&gt;&lt;span class=&quot;t&quot;&gt;&lt;i style=&quot;width:98%&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;score&quot;&gt;&lt;span class=&quot;v&quot;&gt;96.3&lt;/span&gt;&lt;span class=&quot;t&quot;&gt;&lt;i style=&quot;width:96.3%&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;tr class=&quot;ours&quot;&gt;&lt;td class=&quot;cond&quot;&gt;&lt;b&gt;&lt;code&gt;[전화번호_A]&lt;/code&gt;&lt;/b&gt;&lt;small&gt;&lt;strong&gt;LLM Capsule method&lt;/strong&gt;: typed entity token, restored after the answer&lt;/small&gt;&lt;/td&gt;&lt;td class=&quot;score&quot;&gt;&lt;span class=&quot;v&quot;&gt;99.3&lt;/span&gt;&lt;span class=&quot;t&quot;&gt;&lt;i style=&quot;width:99.3%&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;score&quot;&gt;&lt;span class=&quot;v&quot;&gt;96.3&lt;/span&gt;&lt;span class=&quot;t&quot;&gt;&lt;i style=&quot;width:96.3%&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
@@ -235,8 +239,7 @@ footer{margin-top:40px;font-size:14px;color:var(--sub)}
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
-&lt;p class=&quot;foot&quot;&gt;Task: list every identifier in the text (phone, email, account, card and ID numbers). 500 documents from OpenPII and 500 dialogues from KDPII. Every condition hides the same PII positions, given in advance, so the scores isolate the replacement method. Answering model gpt-6-luna, one run per condition.&lt;/p&gt;
-
+&lt;p class=&quot;foot&quot;&gt;Every method hides the same PII positions, set in advance, so score differences come only from the replacement method. Documents are from OpenPII and dialogues from KDPII. Answering model gpt-6-luna, one run per method.&lt;/p&gt;
 
 &lt;div class=&quot;cta&quot;&gt;
 &lt;a class=&quot;btn primary&quot; href=&quot;{UTM 링크: 데모 요청}&quot;&gt;Evaluate your own masking tool&lt;/a&gt;
@@ -267,18 +270,19 @@ footer{margin-top:40px;font-size:14px;color:var(--sub)}
 &lt;p class=&quot;foot&quot;&gt;Lookup: answer one value such as &quot;What is Minji&#x27;s phone number?&quot;, exact match after restoration. Extraction: return all identifiers as a list, document-level F1. n = 500 per dataset.&lt;/p&gt;
 
 &lt;h2&gt;Typed token minus hash token&lt;/h2&gt;
+&lt;p class=&quot;sub&quot;&gt;Both can be restored to the original value. The only difference is whether the model knows what (a phone number, an email) was in that slot.&lt;/p&gt;
 &lt;div class=&quot;wrap&quot;&gt;
 &lt;table&gt;
 &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Dataset&lt;/th&gt;&lt;th&gt;Task&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;Difference&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;95% interval&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Documents (OpenPII)&lt;/td&gt;&lt;td&gt;Lookup&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+26.8 pp&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+23.0 to +30.6&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Documents (OpenPII)&lt;/td&gt;&lt;td&gt;Extraction&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+22.6 pp&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+19.7 to +25.5&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Dialogues (KDPII)&lt;/td&gt;&lt;td&gt;Lookup&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+22.6 pp&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+18.6 to +26.6&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;Dialogues (KDPII)&lt;/td&gt;&lt;td&gt;Extraction&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+28.9 pp&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+26.1 to +31.9&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Documents (OpenPII)&lt;/td&gt;&lt;td&gt;Lookup&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+26.8 pp&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+23.0 to +30.6 pp&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Documents (OpenPII)&lt;/td&gt;&lt;td&gt;Extraction&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+22.6 pp&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+19.7 to +25.5 pp&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Dialogues (KDPII)&lt;/td&gt;&lt;td&gt;Lookup&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+22.6 pp&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+18.6 to +26.6 pp&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;Dialogues (KDPII)&lt;/td&gt;&lt;td&gt;Extraction&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+28.9 pp&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;+26.1 to +31.9 pp&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
-&lt;p class=&quot;foot&quot;&gt;Document-level percentile bootstrap, 2,000 resamples (seed 420929). Exploratory, no multiple-comparison correction. Per-condition intervals are on the dataset card.&lt;/p&gt;
+&lt;p class=&quot;foot&quot;&gt;The 95% interval is the range the difference would usually fall in if the experiment were repeated; in all four cases the whole interval is above +18 pp. Document-level bootstrap, 2,000 resamples (seed 420929). Exploratory, no multiple-comparison correction.&lt;/p&gt;
 &lt;/section&gt;
 
 &lt;section role=&quot;tabpanel&quot; id=&quot;t-method&quot; aria-labelledby=&quot;b-method&quot; hidden&gt;
@@ -286,7 +290,7 @@ footer{margin-top:40px;font-size:14px;color:var(--sub)}
 &lt;ul&gt;
 &lt;li&gt;Every condition hides the same gold PII positions; only the replacement form changes.&lt;/li&gt;
 &lt;li&gt;The same value within a document always maps to the same token.&lt;/li&gt;
-&lt;li&gt;Mapping tables and original values are never sent to the model. Restoration runs locally after the answer.&lt;/li&gt;
+&lt;li&gt;Original values and the mapping table (which token stands for which value) are never sent to the model. Restoring the original values happens on the user&#x27;s side after the answer.&lt;/li&gt;
 &lt;li&gt;Hash and typed tokens are both restorable. The difference is whether the model can see that a slot holds a phone number.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Limitations&lt;/h2&gt;
@@ -294,23 +298,23 @@ footer{margin-top:40px;font-size:14px;color:var(--sub)}
 &lt;li&gt;Gold spans are given, so detection quality is not measured.&lt;/li&gt;
 &lt;li&gt;One answering model and one run per condition.&lt;/li&gt;
 &lt;li&gt;Lookup and extraction only; do not generalize to summarization, classification or reasoning.&lt;/li&gt;
-&lt;li&gt;Scores above the original text likely reflect that type labels make targets easier to pick, not a general capability gain.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;***&lt;/code&gt; scores zero partly because these tasks require returning the original value.&lt;/li&gt;
+&lt;li&gt;The typed token scores slightly above the original text likely because a label such as [전화번호_A] points to the target. It does not mean replacement makes answers better than the original.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;***&lt;/code&gt; scores zero partly because these tasks require answering with the original value.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/section&gt;
 
 &lt;section role=&quot;tabpanel&quot; id=&quot;t-data&quot; aria-labelledby=&quot;b-data&quot; hidden&gt;
 &lt;div class=&quot;wrap&quot;&gt;
 &lt;table&gt;
-&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Source&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;Korean items&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;Task-eligible&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;Sampled&lt;/th&gt;&lt;th&gt;License&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Source&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;Korean items&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;Fit for the tasks&lt;/th&gt;&lt;th class=&quot;num&quot;&gt;Sampled&lt;/th&gt;&lt;th&gt;License&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
 &lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;&lt;a href=&quot;https://huggingface.co/datasets/ai4privacy/pii-masking-openpii-1.5m&quot;&gt;OpenPII 1.5M&lt;/a&gt; (validation, documents)&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;5,273&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;2,003&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;500&lt;/td&gt;&lt;td&gt;CC BY 4.0, Ai4Privacy / Ai Suisse SA&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;a href=&quot;https://huggingface.co/datasets/ai4privacy/pii-masking-openpii-1.5m&quot;&gt;OpenPII 1.5M&lt;/a&gt; (original validation split, documents)&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;5,273&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;2,003&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;500&lt;/td&gt;&lt;td&gt;CC BY 4.0, Ai4Privacy / Ai Suisse SA&lt;/td&gt;&lt;/tr&gt;
 &lt;tr&gt;&lt;td&gt;&lt;a href=&quot;https://zenodo.org/records/16759166&quot;&gt;KDPII Revised&lt;/a&gt; (dialogues)&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;4,981&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;2,184&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;500&lt;/td&gt;&lt;td&gt;CC BY 4.0&lt;/td&gt;&lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;At least 50 items per question type, the rest allocated by type frequency, stratified by length and PII count. Not population-proportional.&lt;/li&gt;
+&lt;li&gt;At least 50 items per question type (the item asked about, such as phone number or email); the rest follow how common each type is in the source. Length and PII count are balanced. The sample does not follow the source distribution exactly.&lt;/li&gt;
 &lt;li&gt;Questions and answers were generated by code from the original gold annotations.&lt;/li&gt;
 &lt;li&gt;Samples, gold answers, per-condition results and scoring code: &lt;a href=&quot;https://huggingface.co/datasets/CUBIGCorp/korean-pii-replacement-benchmark&quot;&gt;CUBIGCorp/korean-pii-replacement-benchmark&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -352,6 +356,6 @@ document.querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;).forEach(function(b
 </div>
 
 </div>
-<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · 게시 미리보기 · v0.5 (2026-10-15)</div>
+<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · 게시 미리보기 · v0.6 (2026-10-15)</div>
 </body>
 </html>
