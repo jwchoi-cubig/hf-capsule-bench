@@ -152,17 +152,17 @@ iframe{display:block;width:100%;height:1050px;border:0}
 &lt;style&gt;
 :root{
   --bg:#ffffff;--panel:#ffffff;--ink:#111827;--sub:#6b7280;--line:#e5e7eb;--head:#f9fafb;
-  --accent:#4f46e5;--accent-soft:#eef2ff;--bar:#d1d5db;--bar-ref:#e5e7eb;--link:#4338ca;--code-bg:#f3f4f6
+  --accent:#4f46e5;--accent-soft:#eef2ff;--bar:#d1d5db;--bar-ref:#e5e7eb;--link:#4338ca;--code-bg:#f3f4f6;--on-accent:#ffffff
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme=&quot;light&quot;]){
     --bg:#0b0f19;--panel:#111827;--ink:#f3f4f6;--sub:#9ca3af;--line:#1f2937;--head:#151c2c;
-    --accent:#818cf8;--accent-soft:#1e1b4b;--bar:#4b5563;--bar-ref:#374151;--link:#a5b4fc;--code-bg:#1f2937
+    --accent:#818cf8;--accent-soft:#1e1b4b;--bar:#4b5563;--bar-ref:#374151;--link:#a5b4fc;--code-bg:#1f2937;--on-accent:#0b0f19
   }
 }
 :root[data-theme=&quot;dark&quot;]{
   --bg:#0b0f19;--panel:#111827;--ink:#f3f4f6;--sub:#9ca3af;--line:#1f2937;--head:#151c2c;
-  --accent:#818cf8;--accent-soft:#1e1b4b;--bar:#4b5563;--bar-ref:#374151;--link:#a5b4fc;--code-bg:#1f2937
+  --accent:#818cf8;--accent-soft:#1e1b4b;--bar:#4b5563;--bar-ref:#374151;--link:#a5b4fc;--code-bg:#1f2937;--on-accent:#0b0f19
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 &quot;Source Sans 3&quot;,-apple-system,&quot;Segoe UI&quot;,&quot;Noto Sans KR&quot;,sans-serif}
@@ -194,7 +194,7 @@ tr.ref td{color:var(--sub)}
 .scope b{color:var(--ink)}
 .cta{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 34px}
 .btn{display:inline-block;padding:10px 16px;border-radius:8px;font-weight:600;text-decoration:none;font-size:15px}
-.btn.primary{background:var(--accent);color:#fff}
+.btn.primary{background:var(--accent);color:var(--on-accent)}
 .btn.ghost{border:1px solid var(--line);color:var(--ink)}
 .tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin:0 0 18px;flex-wrap:wrap}
 .tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:8px 14px;font:inherit;font-size:16px;color:var(--sub);cursor:pointer}
@@ -352,6 +352,6 @@ document.querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;).forEach(function(b
 </div>
 
 </div>
-<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · 게시 미리보기 · v0.4 (2026-10-15)</div>
+<div style="max-width:720px;margin:24px auto 40px;padding:0 16px;font:13px/1.5 sans-serif;color:#888">검토용 미리보기 · 게시 미리보기 · v0.5 (2026-10-15)</div>
 </body>
 </html>
